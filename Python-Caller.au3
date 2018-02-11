@@ -33,12 +33,11 @@ For $i = 1 To $CommandLine[0]
 	  FileRecycle($tmp)
    EndIf
 
-   Local $hFileOpen = FileOpen($tmp, $FO_APPEND)
-   FileWriteLine($hFileOpen, 'chdir /d "' & $sDrive & "\"  & $sDir & '"')
-   FileWriteLine($hFileOpen, '"' & $env_path & '" "' & $file & '"')
-   FileWriteLine($hFileOpen, 'pause')
-   FileClose($hFileOpen)
-
-   RunWait($tmp)
-   FileRecycle($tmp)
+   Local $cmd = 'chdir /d "' & $sDrive & "\"  & $sDir & '"'
+   $cmd = $cmd & ' & '
+   $cmd = $cmd & '"'  & $env_path & '" "' & $file & '"'
+   $cmd = $cmd & ' & '
+   $cmd = $cmd & 'pause'
+   ;MsgBox($MB_SYSTEMMODAL, "Config Error", $cmd)
+   Run(@ComSpec & " /c " & $cmd)
 Next
