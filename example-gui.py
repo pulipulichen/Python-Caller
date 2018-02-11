@@ -2,7 +2,7 @@
 
 from __future__ import print_function
 
-# install package programmatically
+# install packages programmatically
 import pip
 def install_and_import(package):
     import importlib
