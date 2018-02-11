@@ -26,10 +26,14 @@ except:
     from tkinter import tk
     from filedialog import askopenfilename
     from simpledialog import askinteger
+import os
+import sys
 
 # tkinter GUI
 Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
-filename = askopenfilename() # show an "Open" dialog box and return the path to the selected file
+filename = askopenfilename(initialdir=os.path.dirname(os.path.realpath(sys.argv[0])),
+                                    title="Please select a Python script:",
+                                    filetypes=[('Python script', '.py')]) # show an "Open" dialog box and return the path to the selected file
 print(filename)
 
 intresult = askinteger("Ask a integer", "Which number you like? [1-5]",
